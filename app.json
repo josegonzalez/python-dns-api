@@ -1,0 +1,57 @@
+{
+  "name": "dns-api",
+  "description": "A simple service for managing a dnsimple account.",
+  "keywords": [
+    "dns",
+    "api"
+  ],
+  "repository": "https://github.com/josegonzalez/python-dns-api",
+  "success_url": "/",
+  "env": {
+    "BLACKLISTED_SUBDOMAINS": {
+      "description": "A comma-separated list of subdomains that cannot be managed",
+      "required": true
+    },
+    "DNSIMPLE_ACCOUNT_ID": {
+      "description": "A dnsimple account_id",
+      "required": true
+    },
+    "DNSIMPLE_ACCOUNT_TOKEN": {
+      "description": "A dnsimple account token",
+      "required": true
+    },
+    "DNSIMPLE_DOMAINS": {
+      "description": "A comma-separated list of domains to manage",
+      "required": true
+    },
+    "FLASK_DEBUG": {
+      "description": "Whether flask debug should be turned on or not",
+      "value": 0
+    },
+    "SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "VALID_USERS": {
+      "description": "A comma-separated list of users",
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  },
+  "image": "heroku/python",
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python"
+    }
+  ]
+}

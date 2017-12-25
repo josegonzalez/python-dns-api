@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+
+import os
+from itsdangerous import JSONWebSignatureSerializer as JWT
+
+SECRET_KEY = os.getenv('SECRET_KEY', 'secret key')
+VALID_USERS = os.getenv('VALID_USERS', '').split(',')
+VALID_USERS = filter(None, VALID_USERS)
+
+jwt = JWT(SECRET_KEY)
+
+for user in VALID_USERS:
+    token = jwt.dumps({'username': user})
+    print('*** token for {0}: {1}'.format(user, token))
